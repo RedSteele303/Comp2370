@@ -13,26 +13,67 @@ import java.util.ArrayList;
  */
 
 public class Assignment1 {
+	public static int minSize = 10;
+	public static int maxSize;
+	public static double averageCopyTime, averageInsertionSortTime;
+	public static double averageMergeSortTime;
+	/**
+	 * Program main
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args)  {
 
-    /**
-     * Program main
-     * 
-     * @param args
-     */
-    public static void main(String[] args)  {
-	CpuTimer timer = new CpuTimer();
-                
-	for (long i = 0; i < 500000; ++i) {
-		ArrayList<Double> a = Sort.fillRandomArray(11);
-		ArrayList<Double> b = Sort.copyArray(a);
-		ArrayList<Double> c = Sort.copyArray(a);
-		
-		b = Sort.mergeSort(b);
-		
-		c = Sort.insertionSort(c);
+		maxSize = Integer.parseInt(args[0]);
+		//	System.out.println(maxSize);
+
+		for (long n = minSize; n<maxSize; n = n*10){
+			//Part 1: Part 1 and 3
+			ArrayList<Double> a = Sort.fillRandomArray(n);
+			//Part 1: Part 2
+			ArrayList<Double> b = new ArrayList<Double>();
+			//Part 1:Part 4
+			long timingIterations = (maxSize * 10)/n;
+
+			System.out.println("Size of the array: " + n + "\n");
+			//		System.out.println(timingIterations + "\n");
+
+			//Part 1: Part 5
+			CpuTimer timer1 = new CpuTimer();
+			for(int j = 0; j<timingIterations; j++){
+				b = Sort.copyArray(a);
+			}
+			averageCopyTime = timer1.getElapsedCpuTime()/timingIterations;
+			System.out.println("Average Copy Time: " + averageCopyTime);
+
+			//Part 1: Part 6
+			CpuTimer timer2 = new CpuTimer();
+			for(int j = 0; j<timingIterations; j++){
+				b = Sort.insertionSort(a);
+			}
+			averageInsertionSortTime = (timer2.getElapsedCpuTime()/timingIterations)-averageCopyTime;
+			if(!Sort.isSorted(b)){
+				System.out.println("One of the array lists was not sorted properly.");
+				System.exit(1);
+			}
+			System.out.println("Average Insertion Sort Time: " + averageInsertionSortTime);
+
+			//Part 1: Part 7
+			CpuTimer timer3 = new CpuTimer();
+			for(int j = 0; j<timingIterations; j++){
+				b = Sort.mergeSort(a);
+			}
+			averageMergeSortTime = (timer3.getElapsedCpuTime()/timingIterations)-averageCopyTime;
+			if(!Sort.isSorted(b)){
+				System.out.println("One of the array lists was not sorted properly.");
+				System.exit(1);
+			}
+			System.out.println("Average Merge Sort Time: " + averageMergeSortTime + "\n");
+
+		}
+		System.out.println("Testing complete.");
+
+
 	}
-                
-	System.out.println("CPU time = " + timer.getElapsedCpuTime());
-    }
 
 }

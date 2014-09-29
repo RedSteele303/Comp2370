@@ -21,11 +21,11 @@ public class Sort {
 		System.out.println(isSorted(c));
 		
 	}
-	public static ArrayList<Double> fillRandomArray(int size)
+	public static ArrayList<Double> fillRandomArray(long size)
 	{
 		//This method takes in an integer size
 		Random rand = new Random();
-		ArrayList<Double> newList = new ArrayList<Double>(size);
+		ArrayList<Double> newList = new ArrayList<Double>();
 		for (int i = 0; i <= size ; i ++)
 		{
 			newList.add(i, rand.nextDouble());
