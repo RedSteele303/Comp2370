@@ -67,6 +67,7 @@ public class Assignment1 {
 			for(int j = 0; j<timingIterations; j++){
 				b = Sort.mergeSort(a);
 			}
+			
 			averageMergeSortTime = (timer3.getElapsedCpuTime()/timingIterations)-averageCopyTime;
 			if(!Sort.isSorted(b)){
 				System.out.println("One of the array lists was not sorted properly.");
@@ -79,10 +80,12 @@ public class Assignment1 {
 			for(Double i = 0.0; i < n; i++){
 				preSorted.add(i);
 			}
+
 			CpuTimer timer4 = new CpuTimer();
 			for(int i = 0; i<timingIterations; i++){
 				b = Sort.insertionSort(preSorted);
 			}
+			
 			averagePreSortedInsertionSortTime = (timer4.getElapsedCpuTime()/timingIterations)-averageCopyTime;
 			if(!Sort.isSorted(b)){
 				System.out.println("One of the array lists was not sorted properly.");
