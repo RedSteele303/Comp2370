@@ -4,40 +4,27 @@ import java.util.Random;
 
 public class Sort {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ArrayList<Double> a = fillRandomArray(11);
-		ArrayList<Double> b = copyArray(a);
-		ArrayList<Double> c = copyArray(a);
-		System.out.println("Unsorted: " + a);
-		System.out.println(isSorted(a));
-		
-		b = mergeSort(b);
-		System.out.println("Sorted by Merge Sort: " + mergeSort(b));
-		System.out.println(isSorted(b));
-		
-		c = insertionSort(c);
-		System.out.println("Sorted by Insertion Sort: " + insertionSort(c));
-		System.out.println(isSorted(c));
-		
-	}
 	public static ArrayList<Double> fillRandomArray(long size)
 	{
 		//This method takes in an integer size
+		//gets a new random number generator
 		Random rand = new Random();
 		ArrayList<Double> newList = new ArrayList<Double>();
+		//fills the arraylist with random doubles
 		for (int i = 0; i <= size ; i ++)
 		{
 			newList.add(i, rand.nextDouble());
 		}
 		return newList;
 	}
+	//simple method to copy the arraylist and return a new list
 	public static ArrayList<Double> copyArray(ArrayList<Double> someList)
 	{
 		ArrayList<Double> copyList = someList;
 		return copyList;
 
 	}
+	//checks to see if at any point, there is a value that is greater than the value that follows it
 	public static boolean isSorted(ArrayList<Double> someList)
 	{
 		boolean sorted = true;        
@@ -68,6 +55,7 @@ public class Sort {
 		}
 		return someList;
 	}
+	//This method takes two arrays and breaks them down into single units and merges them back in ascending order
 	public static ArrayList<Double> merge(ArrayList<Double> leftList, ArrayList<Double> rightList) {
 	    if (leftList.size() == 0) {
 	      return rightList;
